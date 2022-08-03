@@ -2,7 +2,7 @@
 
 - RANK : Silver
 - Language : Python
-- [게임]('https://www.acmicpc.net/problem/1072')
+- [게임](https://www.acmicpc.net/problem/1072)
 
 <br/>
 

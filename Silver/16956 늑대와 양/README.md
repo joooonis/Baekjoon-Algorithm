@@ -1,4 +1,4 @@
-# BOJ 1072, 게임
+# BOJ 16956, 늑대와 양
 
 - RANK : Silver
 - Language : Python

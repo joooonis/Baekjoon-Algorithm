@@ -6,6 +6,7 @@
 
 <br/>
 
-# n!(by recursion)
+# n!(factiorial)
 
-- 재귀함수를 사용하여 factorial 구현이 가능하다.
+- f(n) = n\*f(n-1)
+- 재귀를 사용하여 factorial함수를 구현합니다.

@@ -2,7 +2,7 @@
 
 - RANK : Silver
 - Language : Python
-- [숫자카드](https://www.acmicpc.net/problem/14425)
+- [문자열 집합](https://www.acmicpc.net/problem/14425)
 
 <br/>
 

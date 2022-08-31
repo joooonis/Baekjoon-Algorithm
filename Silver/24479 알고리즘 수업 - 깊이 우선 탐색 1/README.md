@@ -1,4 +1,4 @@
-# BOJ 24479, 알고리즘 수업
+# BOJ 24479, 알고리즘 수업 - 깊이 우선 탐색 1
 
 - RANK : Silver
 - Language : Python
@@ -19,3 +19,4 @@
 - 재귀로 구현
 - visited는 함수 밖에서 선언하고 parameter로 넘겨준다.
 - 오름차순으로 방문하기 위해 edges 배열을 정렬하였다.
+- RuntimeError 때문에 recursion depth limit를 높여주여야 한다.

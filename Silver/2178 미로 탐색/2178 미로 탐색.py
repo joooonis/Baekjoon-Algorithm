@@ -3,16 +3,11 @@ sys.setrecursionlimit(10**9)
 
 n, m = map(int, sys.stdin.readline().split())
 
-graph,counts = [],[]
+graph = []
 
 for _ in range(n):
     line = sys.stdin.readline().rstrip()
     graph.append([i for i in line ])
-
-visited = [[ False for _ in range(m)] for _ in range(n)]
-
-from collections import deque
-
 
 dx = [-1, 1, 0 ,0]
 dy = [0, 0, -1, 1]

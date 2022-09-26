@@ -26,3 +26,5 @@ for i in range(n):
     friend.append(cnt)
 
 print(len(max(friend, key=len)))
+
+#안녕하세요

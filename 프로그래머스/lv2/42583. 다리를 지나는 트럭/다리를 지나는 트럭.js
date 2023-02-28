@@ -1,12 +1,10 @@
 function solution(bridge_length, weight, truck_weights) {
-  var time = 0;
-  let queue = [];
+  let time = 0;
+  let queue = new Array(bridge_length).fill(0);
   let sum = 0;
 
-  while (truck_weights.length > 0 || queue.length > 0) {
-    if (queue.length === bridge_length) {
-      sum -= queue.shift();
-    }
+  while (truck_weights.length > 0 || sum > 0) {
+    sum -= queue.shift();
 
     if (sum + truck_weights[0] <= weight) {
       sum += truck_weights[0];
@@ -16,7 +14,6 @@ function solution(bridge_length, weight, truck_weights) {
     }
 
     time++;
-    if (queue.reduce((a, b) => a + b) === 0) break;
   }
 
   return time;

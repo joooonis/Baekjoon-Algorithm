@@ -1,6 +1,5 @@
 function solution(board) {
   winner = null;
-
   countO = 0;
   countX = 0;
   for (let row of board) {
@@ -9,7 +8,6 @@ function solution(board) {
       if (cell === 'X') countX++;
     }
   }
-  if (countO === 0 && countX === 0) return 1;
 
   if (
     board.includes('OOO') ||
@@ -42,4 +40,3 @@ function solution(board) {
   }
   return countO === countX || countO - countX === 1 ? 1 : 0;
 }
-

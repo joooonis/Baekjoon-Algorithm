@@ -42,3 +42,4 @@ function solution(board) {
   }
   return countO === countX || countO - countX === 1 ? 1 : 0;
 }
+

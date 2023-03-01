@@ -7,15 +7,19 @@ function solution(skill, skill_trees) {
   }
 
   for (let tree of skill_trees) {
-    let prevSkill = -1;
+    let prevSkill = null;
     let isPossible = true;
     for (let i = 0; i < tree.length; i++) {
-      if (tree[i] === skill[0]) prevSkill = tree[i];
+      if (tree[i] === skill[0]) {
+        prevSkill = tree[i];
+      }
       if (skillhashMap[tree[i]]) {
         if (skillhashMap[tree[i]] !== prevSkill) {
           isPossible = false;
           break;
-        } else prevSkill = tree[i];
+        } else {
+          prevSkill = tree[i];
+        }
       }
     }
     if (isPossible) {

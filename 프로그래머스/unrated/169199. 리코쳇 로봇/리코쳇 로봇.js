@@ -1,8 +1,6 @@
 function solution(board) {
-  var answer = 0;
   const start = findStart(board);
   const count = bfs(board, start);
-
   return count ? count : -1;
 }
 
@@ -16,6 +14,12 @@ function findStart(board) {
       }
     }
   }
+}
+
+function isValid(board, x, y) {
+  const rows = board.length;
+  const cols = board[0].length;
+  return x >= 0 && x < rows && y >= 0 && y < cols;
 }
 
 function bfs(matrix, start) {
@@ -44,8 +48,8 @@ function bfs(matrix, start) {
       for (let j = 0; j < 4; j++) {
         let nx = x + dx[j];
         let ny = y + dy[j];
-        if (nx >= 0 && nx < rows && ny >= 0 && ny < cols) {
-          while (nx >= 0 && nx < rows && ny >= 0 && ny < cols) {
+        if (isValid(matrix, nx, ny)) {
+          while (isValid(matrix, nx, ny)) {
             if (matrix[nx][ny] === 'D') {
               break;
             }

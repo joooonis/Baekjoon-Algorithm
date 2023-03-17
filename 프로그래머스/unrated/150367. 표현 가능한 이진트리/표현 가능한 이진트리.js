@@ -5,13 +5,13 @@ function solution(numbers) {
     while (!isHeightNumber(binary.length)) {
       binary = '0' + binary;
     }
-    answer.push(bfs(binary));
+    answer.push(wow(binary));
   });
 
   return answer;
 }
 
-function bfs(binary) {
+function wow(binary) {
   if (binary.length === 1) {
     return 1;
   }
@@ -21,7 +21,7 @@ function bfs(binary) {
   let right = binary.slice(Math.floor(binary.length / 2) + 1, binary.length);
 
   if (mid === '1') {
-    return bfs(left) * bfs(right);
+    return wow(left) * wow(right);
   } else {
     return left.includes(1) || right.includes(1) ? 0 : 1;
   }

@@ -1,13 +1,8 @@
 function solution(priorities, location) {
-    const queue = priorities.map((v,i)=>[v,i])
-    
-    console.log(queue)
-    
+    const queue = priorities.map((v,i)=>[v,i])    
     let count = 1
-
     
     while(queue.length > 0){
-
         paper = queue.shift()
         if (Math.max(...queue.map(v=>v[0])) > paper[0]){
             queue.push(paper)

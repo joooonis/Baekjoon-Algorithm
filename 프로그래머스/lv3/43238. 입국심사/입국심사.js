@@ -1,5 +1,4 @@
 function solution(n, times) {
-    times.sort()
     let left = 1
     let right = times[times.length-1] * n
     let mid = Math.floor((left+right)/2)

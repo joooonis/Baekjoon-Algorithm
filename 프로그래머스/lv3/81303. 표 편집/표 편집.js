@@ -1,7 +1,7 @@
 function solution(n, k, cmd) {
   let answer = '';
   let stack = [];
-  let list = new LinkedList();
+  let list = new DLL();
   for (let i = 0; i < n; i++) {
     list.add(i);
   }
@@ -28,12 +28,12 @@ function solution(n, k, cmd) {
       if (curr.next) {
         curr.next.prev = curr.prev;
       }
-      if (curr === list.head) {
-        list.head = curr.next;
-      }
-      if (curr === list.tail) {
-        list.tail = curr.prev;
-      }
+      // if (curr === list.head) {
+      //   list.head = curr.next;
+      // }
+      // if (curr === list.tail) {
+      //   list.tail = curr.prev;
+      // }
       curr = curr.next ? curr.next : curr.prev;
     } else if (command === 'Z') {
       let node = stack.pop();
@@ -66,7 +66,7 @@ class Node {
   }
 }
 
-class LinkedList {
+class DLL {
   constructor() {
     this.head = null;
     this.tail = null;

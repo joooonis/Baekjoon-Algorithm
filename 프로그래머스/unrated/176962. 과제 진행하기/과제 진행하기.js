@@ -1,12 +1,11 @@
 function solution(plans) {
-  var answer = [];
+  const answer = [];
   plans.sort((a, b) => convertToMinute(b[1]) - convertToMinute(a[1]));
-  stack = [];
+  const stack = [];
   while (plans.length || stack.length) {
-    let [name, start, playTime] = plans.pop();
-    let endTime = convertToMinute(start) + parseInt(playTime);
+    const [name, start, playTime] = plans.pop();
+    const endTime = convertToMinute(start) + parseInt(playTime);
 
-    // 남겨둔 과제들 전부 처리
     if (plans.length === 0) {
       answer.push(name);
       while (stack.length) {
@@ -15,27 +14,23 @@ function solution(plans) {
       break;
     }
 
-    let nextStartTime = convertToMinute(plans[plans.length - 1][1]);
-    let leftTime = endTime - nextStartTime; // 남은 시간 = 현재 과제 끝나는 시간 - 다음 과제 시작 시간
+    const nextStart = convertToMinute(plans[plans.length - 1][1]);
+    const leftTime = endTime - nextStart;
     if (leftTime > 0) {
-      // 과제를 끝내지 못하면 스택에 넣어둠
       stack.push([name, leftTime]);
     } else if (leftTime === 0) {
       answer.push(name);
     } else {
-      // 과제를 끝낼 수 있으면
       answer.push(name);
-      let nowTime = endTime; // 현재 시간 = 현재 과제 끝나는 시간
+      let currentTime = endTime;
       while (stack.length) {
-        let [Lastname, LastLeftTime] = stack.pop();
-        let availableTime = nextStartTime - nowTime; // 현재 과제 끝나는 시간 - 다음 과제 시작 시간
-        if (availableTime >= LastLeftTime) {
-          // 다음 과제 시작 시간 - 현재 시간 >= 스택에 있는 과제 남은 시간, 스택에 있는 과제를 끝낼 수 있음
-          answer.push(Lastname);
-          nowTime = nowTime + LastLeftTime; // 현재 시간 = 현재 시간 + 스택에 있는 과제 남은 시간
+        const [stackName, stackLeftTime] = stack.pop();
+        const availableTime = nextStart - currentTime;
+        if (availableTime >= stackLeftTime) {
+          answer.push(stackName);
+          currentTime += stackLeftTime;
         } else {
-          // 스택에 있는 과제를 끝낼 수 없음
-          stack.push([Lastname, LastLeftTime - availableTime]);
+          stack.push([stackName, stackLeftTime - availableTime]);
           break;
         }
       }
@@ -45,7 +40,7 @@ function solution(plans) {
   return answer;
 }
 
-function convertToMinute(time) {
-  const [hour, minute] = time.split(':');
-  return parseInt(hour) * 60 + parseInt(minute);
-}
+const convertToMinute = time => {
+  const [hour, minute] = time.split(':').map(Number);
+  return hour * 60 + minute;
+};

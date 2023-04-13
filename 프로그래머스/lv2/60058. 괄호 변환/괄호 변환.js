@@ -1,15 +1,16 @@
 function solution(p) {
-  if (p.length === 0) return '';
+  if (!p.length) return '';
 
   const a = p[0];
-  const b = p[0] === '(' ? ')' : '(';
+  const b = a === '(' ? ')' : '(';
 
-  let a_count = 1;
-  let b_count = 0;
+  let aCount = 1;
+  let bCount = 0;
   let idx = 1;
-  while (a_count !== b_count) {
-    if (p[idx] === a) a_count++;
-    if (p[idx] === b) b_count++;
+
+  while (aCount !== bCount) {
+    if (p[idx] === a) aCount++;
+    if (p[idx] === b) bCount++;
     idx++;
   }
 
@@ -20,7 +21,7 @@ function solution(p) {
     return u + solution(v);
   } else {
     let answer = '(' + solution(v) + ')';
-    u = u.slice(1, u.length - 1);
+    u = u.slice(1, -1);
     u = u
       .split('')
       .map((v) => (v === '(' ? ')' : '('))
@@ -31,15 +32,11 @@ function solution(p) {
 
 function isRightString(str) {
   let stack = [];
-  let x = str.split('');
-  stack.push(x.shift());
-  while (x.length > 0) {
-    if (stack[stack.length - 1] === '(' && x[0] === ')') {
-      stack.pop();
-      x.shift();
-    } else {
-      stack.push(x.shift());
-    }
+
+  for (const s of str) {
+    if (stack[stack.length - 1] === '(' && s === ')') stack.pop();
+    else stack.push(s);
   }
-  return stack.length === 0;
+
+  return !stack.length;
 }

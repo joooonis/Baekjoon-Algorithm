@@ -1,9 +1,8 @@
 function solution(price, money, count) {
-    let cost = 0
-    
-    for (let i=1; i < count+1; i++){
-        cost += price * i
+    var answer = -1;
+    let cost = 0;
+    for (let i=1; i<=count; i++){
+        cost += i * price
     }
-    
-    return cost - money > 0 ? cost - money : 0;
+    return cost > money ? cost - money : 0
 }

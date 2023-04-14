@@ -1,32 +1,33 @@
 function solution(n, wires) {
-  let answer = n;
-  const graph = Array.from(Array(n + 1), () => []);
-  for (const [a, b] of wires) {
-    graph[a].push(b);
-    graph[b].push(a);
-  }
-  console.log(graph);
+    const graph = Array(n+1).fill().map(()=>[])
+    
+    for (const [v1,v2] of wires){
+        graph[v1].push(v2)
+        graph[v2].push(v1)
+    }
 
-  for (let i = 0; i < wires.length; i++) {
-    const [a, b] = wires[i];
-    graph[a] = graph[a].filter((v) => v !== b);
-    graph[b] = graph[b].filter((v) => v !== a);
-    const visited = Array(n + 1).fill(false);
-    const count = dfs(1, graph, visited);
-    answer = Math.min(answer, Math.abs(n - count - count));
-    graph[a].push(b);
-    graph[b].push(a);
-  }
-  return answer;
+    let answer = Infinity
+    for (const [v1,v2] of wires){
+        const g = [...graph]
+        g[v1] = g[v1].filter(v => v !== v2)
+        g[v2] = g[v2].filter(v => v !== v1)
+        let visited = Array(n+1).fill(false)
+        let count = 0
+        dfs(1, g, visited,0)
+        count = visited.filter(v=>v).length
+        answer = Math.min(answer, Math.abs(n - count - count))
+    }
+    return answer;
 }
 
-function dfs(start, graph, visited) {
-  visited[start] = true;
-  let count = 1;
-  for (const next of graph[start]) {
-    if (!visited[next]) {
-      count += dfs(next, graph, visited);
+function dfs(start, graph, visited){
+    visited[start] = true
+    for (let next of graph[start]){
+        if (!visited[next]) {
+            visited[next] = true
+            dfs(next, graph, visited)
+        
+        }
     }
-  }
-  return count;
+    
 }

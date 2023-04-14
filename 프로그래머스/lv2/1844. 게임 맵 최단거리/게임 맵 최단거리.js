@@ -1,40 +1,40 @@
 function solution(maps) {
-    function bfs (maps, start)  {
-        const rows = maps.length;
-        const cols = maps[0].length;
-        const visited = Array(rows).fill().map(()=>Array(cols).fill(false))
+    
+    function bfs ([x,y]) {
+        const row = maps.length
+        const col = maps[0].length
+        const visited = Array(row).fill().map(()=>Array(col).fill(false))
         const dx = [1, -1, 0, 0]
         const dy = [0, 0, 1, -1]
 
-        const queue = [start]
-        visited[start[0]][start[1]] = true
-        let count = 1
+        queue = [[x,y]]
+        visited[x][y] = true
+        let distance = 0
         
-        while(queue.length > 0){
-            const curLevelSize = queue.length;
-            for (let i=0; i<curLevelSize; i++ ){
-                const [x, y] = queue.shift()
-                if (x === rows - 1 && y === cols - 1 ){
-                    return count
-                }
-                for (let i=0; i<4; i++){
-                    const nx = x + dx[i]
-                    const ny = y + dy[i]
+        while (queue.length>0){
+            const currLevelSize = queue.length
+            distance++
+            for (let k=0; k<currLevelSize; k++){
                 
-                if(nx>=0 && nx < rows && ny >= 0 && ny < cols ){
-                    
-                if(!visited[nx][ny] && maps[nx][ny] === 1){
-                    visited[nx][ny] = true;
-                    queue.push([nx,ny])
+            
+            const [x, y] = queue.shift()
+            if (x === row - 1 && y === col -1) return distance
+            for (let i=0; i<4; i++){
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if (nx>=0 && nx<row && ny>=0 && ny<col){
+                    if (maps[nx][ny] === 1 && !visited[nx][ny]){
+                        queue.push([nx,ny])
+                        visited[nx][ny] = true
+                    }
+                }
                 }
             }
-            }
-            }
-            count++
+            
         }
+        return -1
     }
     
-    const answer = bfs(maps,[0,0])
-    
-    return  answer ? answer : -1
+    answer =  bfs([0,0]);
+    return answer ? answer : -1
 }

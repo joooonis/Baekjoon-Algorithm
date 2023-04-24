@@ -31,14 +31,18 @@ function solution(name) {
   let upDown = 0;
   let leftRight = name.length - 1;
 
+  // i 지점까지 오른쪽으로 이동후 다음 타겟까지 왼쪽으로 이동하는 값을 계속 갱신
   for (let i = 0; i < name.length; i++) {
-    const dist = distance[name[i]];
-    upDown += Math.min(dist, 26 - dist);
+    upDown += distance[name[i]];
     let nextIndex = i + 1;
     while (nextIndex < name.length && name[nextIndex] === 'A') {
       nextIndex++;
     }
-    leftRight = Math.min(leftRight, i + name.length - nextIndex + Math.min(i, name.length - nextIndex));
+
+    leftRight = Math.min(
+      leftRight,
+      i + name.length - nextIndex + Math.min(i, name.length - nextIndex)
+    );
   }
 
   return upDown + leftRight;

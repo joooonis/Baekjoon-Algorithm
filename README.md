@@ -1,2 +1,2 @@
-# Baekjoon-Algorithm
-백준 온라인 저지 풀이 입니다. 
+# Algorithm
+알고리즘 공부!!
